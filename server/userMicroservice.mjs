@@ -18,7 +18,7 @@ app.use(express.json());
 
 // new User--------------------------------------------------
 async function registerUser(login) {
-    console.log("Running registerUse()...");
+    console.log("Running registerUser()...");
     const { username, password } = login;
 
     try {
@@ -27,7 +27,7 @@ async function registerUser(login) {
         if (userExists) {
             return {
                 isValid: false,
-                errorMessage: "User already exsits. Please register with a different username."
+                errorMessage: "User already exists. Please register with a different username."
             };
         }
 
@@ -87,7 +87,7 @@ async function validateUser(login) {
     }
 }
 
-app.post("/login", async(req, res) => {
+app.post("/verifyUser", async(req, res) => {
     const { login } = req.body;
 
     if (!login || !login.username || !login.password) {
@@ -99,9 +99,11 @@ app.post("/login", async(req, res) => {
 
     try {
         let response;
-        if (login.isNewUser) {
+        if (login.isNewUser == "true") {
+            console.log("According to the microservice, user is new!");
             response = await registerUser(login);
         } else {
+            console.log("According to the microservice, user is returning!")
             response = await validateUser(login);
         }
 
@@ -116,7 +118,7 @@ app.post("/login", async(req, res) => {
 })
 
 // Start the HTTP server
-const PORT = 3000;
+const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`HTTP microservice running on http://localhost:${PORT}`);
 });
