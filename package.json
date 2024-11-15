@@ -1,0 +1,21 @@
+{
+  "name": "mealplannermicroservicea-http-",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "node ./clientTest/tester.mjs",
+    "server": "node ./server/userMicroservice.mjs"
+  },
+  "author": "Travis Kuenzi",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.1",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.8.1",
+    "node": "^18.20.5",
+    "nodemon": "^3.1.7"
+  }
+}
